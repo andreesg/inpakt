@@ -6,17 +6,17 @@ VolunteeringController["index"] = Backbone.View.extend({
 
   template: "script.view[id=index]",
   compiledTemplate: "",
+  map: null,
 
   initialize: function() {
-    console.log("Volunteering CONTROLLER");
 
-
-    _.bindAll(this, 'render', 'appendItem', 'onMessage'); // bind scope of this within functions
+    _.bindAll(this, 'render', 'appendItem', 'onMessage', 'initMap','onLocationError','onLocationFound'); // bind scope of this within functions
 
     // compile template so that it can be used later
     this.compiledTemplate = _.template( $(this.template).html() );
+    this.render();
 
-    //this.render();
+    this.initMap();
 
     // setup the model collection
     this.collection = new VolunteeringCollection();
@@ -33,24 +33,53 @@ VolunteeringController["index"] = Backbone.View.extend({
     this.$el.hammer();
 
     // setup navigation bar
-    steroids.view.navigationBar.show("Volunteering Index");
-
-    /*
-
-    var rightButton = new steroids.buttons.NavigationBarButton();
-
-    rightButton.title = "Add";
-    rightButton.onTap = function() {
-      view = new steroids.views.WebView("/views/volunteering/new.html");
-      steroids.modal.show(view);
-    };
-
-    steroids.view.navigationBar.setButtons({right: [rightButton]});
-
-    */
+    steroids.view.navigationBar.show("Volunteering Opportunities");
 
     return this;
   },
+
+
+
+  /* MAP SPECIFIC */
+
+  initMap: function() {
+    this.map = L.map('map');
+
+    L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: 'Inpakt'
+    }).addTo(this.map);
+
+    this.map.on('locationfound', this.onLocationFound);
+    this.map.on('locationerror', this.onLocationError);
+
+    this.map.locate({setView: true, maxZoom: 16});
+  },
+
+  onLocationFound: function(e) {
+    var radius = e.accuracy / 2;
+
+    L.marker(e.latlng).addTo(this.map)
+    .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+    L.circle(e.latlng, radius).addTo(this.map);
+  },
+
+  onLocationError: function(e) {
+      alert(e.message);
+  },
+
+
+
+
+
+
+  /* END MAP SPECIFIC */
+
+
+
+
+
 
   render: function() {
     this.$el.html( this.compiledTemplate );
