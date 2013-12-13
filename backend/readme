@@ -9,17 +9,27 @@ GET /search?q={string}
     - {string} must be at least 3 chars in length
     - {string} must be url encoded
 
+GET /{npo_slug}
 GET /portugal/abraco
-    - Retrieve an NPO by slug
+GET /portugal/abraco/volunteering-opportunities
+GET /portugal/abraco/volunteering-opportunities/1
+GET /portugal/abraco/volunteering-opportunities/1/volunteers
+GET /portugal/abraco/donations
+POST /portugal/abraco/donate
 
 GET /causes
-    - Retrieve all causes
+GET /causes/{id}
+GET /causes/1/npos
+GET /causes/1/volunteering-opportunities
 
-GET /causes/{cause_id}/npos
-    - Retrieve npos with a cause represented by {cause_id}
+GET /volunteering-opportunities
+
+GET /me
+GET /me/badges
+GET /me/donations
+GET /me/volunteering-opportunities
+
+GET /badges
 
 POST /register
-    - all fields are mandatory
-
 POST /login
-    - all fields are mandatory
