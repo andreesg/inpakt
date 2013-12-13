@@ -1,0 +1,21 @@
+{
+    "npo": {
+        "id": 3,
+        "name": "Mundo a sorrir",
+        "shortName": "Mundo a sorrir",
+        "legalName": "Mundo a sorrir",
+        "slug": "portugal/mundo-a-sorrir",
+        "email": "abraco@abraco.pt",
+        "phone": "+351 123 123 123",
+        "country": "PT",
+        "address": "Quinta de Cima, 5",
+        "city": "Lisboa",
+        "postalCode": "1500-010",
+        "taxNumber": "123456789",
+        "description": "looooong text",
+        "mission": "A ABRAÇO é uma IPSS (Instituição Particular de Solidariedade Social) e ONGD (Organização Não-Governamental, para o Desenvolvimento), sem fins lucrativos de prestação de serviços na área do VIH/SIDA.",
+        "image": "/img/abraco.jpg",
+        "totalAmountRaised": 1500,
+        "causes": [ 1, 3, 5 ]
+    }
+}
