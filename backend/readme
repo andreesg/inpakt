@@ -1,0 +1,25 @@
+How to run the server:
+    php -S localhost:80 server.php
+
+Notes:
+    - All countries follow ISO-3166-alpha-2 format guidelines
+
+GET /search?q={string}
+    - Search NPOs that match {string}
+    - {string} must be at least 3 chars in length
+    - {string} must be url encoded
+
+GET /portugal/abraco
+    - Retrieve an NPO by slug
+
+GET /causes
+    - Retrieve all causes
+
+GET /causes/{cause_id}/npos
+    - Retrieve npos with a cause represented by {cause_id}
+
+POST /register
+    - all fields are mandatory
+
+POST /login
+    - all fields are mandatory
