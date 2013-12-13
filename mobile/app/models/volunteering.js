@@ -5,8 +5,8 @@
   var baseURL = "http://0.0.0.0:8000/api/v1/npos"
 
   // single model
-  window.User = Backbone.Model.extend({
-    idAttribute: "user_id", // you might need to change/remove this here and in app/controllers/user.js
+  window.Volunteering = Backbone.Model.extend({
+    idAttribute: "volunteering_id", // you might need to change/remove this here and in app/controllers/volunteering.js
     url: function() {
       if (this.isNew()) {
         return baseURL
@@ -14,12 +14,19 @@
         return baseURL+"/"+this.id // use id suffix if model has id
       }
     },
+    // override sync to set default headers for this model
   });
 
   // model collection
-  window.UserCollection = Backbone.Collection.extend({
-    model: User,
+  window.VolunteeringCollection = Backbone.Collection.extend({
+    model: Volunteering,
     url: baseURL,
+
+    parse: function(resp) {
+      if(resp.npos) {
+        return resp.npos;
+      }
+    }
   });
 
 

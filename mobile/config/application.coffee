@@ -4,7 +4,7 @@
 steroids.config.name = "Inpakt"
 
 # -- Initial Location --
-steroids.config.location = "http://localhost/index.html"
+#steroids.config.location = "http://localhost/index.html"
 
 # -- Tab Bar --
 steroids.config.tabBar.enabled = true
@@ -12,12 +12,12 @@ steroids.config.tabBar.tabs = [
   {
     title: "Volunteering"
     icon: "icons/pill@2x.png"
-    location: "http://localhost/views/volunteering/index"
+    location: "http://localhost/views/volunteering/index.html"
   },
   {
     title: "Institutions"
     icon: "icons/telescope@2x.png"
-    location: "http://localhost/views/npo/index"
+    location: "http://localhost/views/npo/index.html"
   },
   {
     title: "Profile"

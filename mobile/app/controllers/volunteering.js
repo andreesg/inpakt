@@ -1,15 +1,16 @@
-window.NpoController = {};
+window.VolunteeringController = {};
 
-// View for npo/index.html
-NpoController["index"] = Backbone.View.extend({
+// View for volunteering/index.html
+VolunteeringController["index"] = Backbone.View.extend({
   el: "body",
 
   template: "script.view[id=index]",
   compiledTemplate: "",
 
   initialize: function() {
+    console.log("Volunteering CONTROLLER");
 
-    console.log("NPO CONTROLLER");
+
     _.bindAll(this, 'render', 'appendItem', 'onMessage'); // bind scope of this within functions
 
     // compile template so that it can be used later
@@ -18,7 +19,7 @@ NpoController["index"] = Backbone.View.extend({
     //this.render();
 
     // setup the model collection
-    this.collection = new NpoCollection();
+    this.collection = new VolunteeringCollection();
     this.collection.on('add', this.appendItem);
     this.collection.on('reset', this.render);
 
@@ -26,47 +27,38 @@ NpoController["index"] = Backbone.View.extend({
     window.addEventListener("message", this.onMessage, false);
 
     // load model collection from server
-    this.collection.fetch({reset:true});
+    this.collection.fetch();
 
     // 'tap' event can be used after this
     this.$el.hammer();
 
     // setup navigation bar
-    steroids.view.navigationBar.show("Npo Index");
+    steroids.view.navigationBar.show("Volunteering Index");
 
     /*
+
     var rightButton = new steroids.buttons.NavigationBarButton();
+
     rightButton.title = "Add";
     rightButton.onTap = function() {
-      view = new steroids.views.WebView("/views/npo/new.html");
+      view = new steroids.views.WebView("/views/volunteering/new.html");
       steroids.modal.show(view);
     };
+
     steroids.view.navigationBar.setButtons({right: [rightButton]});
+
     */
 
     return this;
   },
 
   render: function() {
-
-    var that = this;
-
-    console.log("COLLECTION");
-    console.log(this.collection);
-
     this.$el.html( this.compiledTemplate );
-
-    this.collection.each(function(index) {
-      console.log(index);
-      that.appendItem(index);
-    });
-
     return this;
   },
 
   appendItem: function(item) {
-    console.log("APPENDING");
-    $("ul", this.$el).append("<li class='topcoat-list__item item' id='"+item.get('id')+"'>"+item.get('name')+"</li>");
+    $("ul", this.$el).append("<li class='topcoat-list__item item' id='"+item.get('volunteering_id')+"'>"+item.get('name')+"</li>");
   },
 
   events: {
@@ -74,7 +66,7 @@ NpoController["index"] = Backbone.View.extend({
   },
 
   open: function(event) {
-    view = new steroids.views.WebView("/views/npo/show.html?id="+$(event.target).attr("id"));
+    view = new steroids.views.WebView("/views/volunteering/show.html?id="+$(event.target).attr("id"));
     steroids.layers.push(view);
   },
 
@@ -85,11 +77,12 @@ NpoController["index"] = Backbone.View.extend({
       this.collection.fetch();
     }
   }
+
 });
 
 
-// View for npo/show.html
-NpoController["show"] = Backbone.View.extend({
+// View for volunteering/show.html
+VolunteeringController["show"] = Backbone.View.extend({
   el: "body",
 
   template: "script.view[id=show]",
@@ -100,7 +93,7 @@ NpoController["show"] = Backbone.View.extend({
 
     this.compiledTemplate = _.template( $(this.template).html() )
 
-    this.model = new Npo({id: steroids.view.params.id});
+    this.model = new Volunteering({volunteering_id: steroids.view.params.id});
 
     this.model.bind('change', this.render, this);
 
@@ -110,17 +103,15 @@ NpoController["show"] = Backbone.View.extend({
     this.model.fetch();
 
     // setup navigation bar
-    steroids.view.navigationBar.show("Npo Show");
+    steroids.view.navigationBar.show("Volunteering Show");
 
-    /*
     var rightButton = new steroids.buttons.NavigationBarButton();
     rightButton.title = "Edit";
     rightButton.onTap = function() {
-      view = new steroids.views.WebView("/views/npo/edit.html?id="+steroids.view.params.id);
+      view = new steroids.views.WebView("/views/volunteering/edit.html?id="+steroids.view.params.id);
       steroids.modal.show(view);
     };
     steroids.view.navigationBar.setButtons({right: [rightButton]});
-    */
 
     return this;
   },
@@ -139,8 +130,8 @@ NpoController["show"] = Backbone.View.extend({
 
 
 
-// View for npo/edit.html
-NpoController["edit"] = Backbone.View.extend({
+// View for volunteering/edit.html
+VolunteeringController["edit"] = Backbone.View.extend({
   el: "body",
 
   template: "script.view[id=edit]",
@@ -148,12 +139,12 @@ NpoController["edit"] = Backbone.View.extend({
   initialize: function() {
     _.bindAll(this, 'render', 'save', 'close', 'afterSave'); // bind scope of this within functions
 
-    this.model = new Npo({npo_id: steroids.view.params.id});
+    this.model = new Volunteering({volunteering_id: steroids.view.params.id});
 
     this.model.fetch({success: this.render});
 
     // setup navigation bar
-    steroids.view.navigationBar.show("Npo Edit");
+    steroids.view.navigationBar.show("Volunteering Edit");
 
     // 'tap' event can be used after this
     this.$el.hammer();
@@ -192,8 +183,8 @@ NpoController["edit"] = Backbone.View.extend({
 });
 
 
-// View for npo/new.html
-NpoController["new"] = Backbone.View.extend({
+// View for volunteering/new.html
+VolunteeringController["new"] = Backbone.View.extend({
   el: "body",
 
   template: "script.view[id=new]",
@@ -201,10 +192,10 @@ NpoController["new"] = Backbone.View.extend({
   initialize: function() {
     _.bindAll(this, 'render', 'save', 'close', 'afterSave'); // bind scope of this within functions
 
-    this.model = new Npo({description: "", name: ""});
+    this.model = new Volunteering({description: "", name: ""});
 
     // setup navigation bar
-    steroids.view.navigationBar.show("Npo New");
+    steroids.view.navigationBar.show("Volunteering New");
 
     // 'tap' event can be used after this
     this.$el.hammer();
