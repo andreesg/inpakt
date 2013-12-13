@@ -1,10 +1,6 @@
 <?php
 
 header("Access-Control-Allow-Origin: *");
-header('Access-Control-Allow-Credentials: true');
-header('Access-Control-Max-Age: 0');    // cache for 1 day
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");     
-header('Content-Type: application/json; charset=UTF-8');
 
 $file = $_SERVER['SCRIPT_FILENAME'];
 
@@ -21,5 +17,7 @@ if (is_file($localFile)) {
 
 function serve($file)
 {
+	header('Content-Type: application/json; charset=UTF-8');
+
     readfile($file);
 }
