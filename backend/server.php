@@ -1,14 +1,14 @@
 <?php
 
 $file = $_SERVER['SCRIPT_FILENAME'];
-$jsonFile = sprintf('%s%s.json', dirname($file), $_SERVER['REQUEST_URI']);
 
-$path = pathinfo($file);
+$localFile = sprintf('%s%s.json', dirname($file), $_SERVER['REQUEST_URI']);
+$methodFile = sprintf('%s%s.%s.json', dirname($file), $_SERVER['REQUEST_URI'], strtolower($_SERVER['REQUEST_METHOD']));
 
-if ($path["extension"] === "json") {
-    serve($file);
-} else if (is_file($jsonFile)) {
-    serve($jsonFile);
+if (is_file($localFile)) {
+    serve($localFile);
+} else if (is_file($methodFile)) {
+    serve($methodFile);
 } else {
     return false;
 }
