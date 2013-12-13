@@ -1,0 +1,8 @@
+{
+    "donation": {
+        "id": 1,
+        "amount": 200,
+        "currency": "EUR",
+        "status": 4
+    }
+}
