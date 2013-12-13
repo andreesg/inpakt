@@ -2,220 +2,127 @@
     "causes": [
         {
             "id": 1,
-            "name": {
-                "pt": "Animais",
-                "en": "Animals",
-            }
+            "name": "Animais"
         },
         {
             "id": 2,
-            "name": {
-                "pt": "Artes e cultura",
-                "en": "Arts & Culture",
-            }
+            "name": "Artes e cultura"
         },
         {
             "id": 3,
-            "name": {
-                "pt": "Crianças",
-                "en": "Children",
-            }
+            "name": "Crianças"
         },
         {
             "id": 4,
-            "name": {
-                "pt": "Controlo do endividamento",
-                "en": "Debt control",
-            }
+            "name": "Controlo do endividamento"
         },
         {
             "id": 5,
-            "name": {
-                "pt": "Deficiências e acessibilidade",
-                "en": "Disability & Accessibility",
-            }
+            "name": "Deficiências e acessibilidade"
         },
         {
             "id": 6,
-            "name": {
-                "pt": "Apoio em casos de catástrofes",
-                "en": "Disaster Relief",
-            }
+            "name": "Apoio em casos de catástrofes"
         },
         {
             "id": 7,
-            "name": {
-                "pt": "Violência doméstica",
-                "en": "Domestic Violence",
-            }
+            "name": "Violência doméstica"
         },
         {
             "id": 8,
-            "name": {
-                "pt": "Drogas e toxicodependência",
-                "en": "Drugs & Addictions",
-            }
+            "name": "Drogas e toxicodependência"
         },
         {
             "id": 9,
-            "name": {
-                "pt": "Educação, literacia e numeracia",
-                "en": "Education, Literacy & Numeracy",
-            }
+            "name": "Educação, literacia e numeracia"
         },
         {
             "id": 10,
-            "name": {
-                "pt": "Serviços de emergência e segurança",
-                "en": "Emergency and Safety Services",
-            }
+            "name": "Serviços de emergência e segurança"
         },
         {
             "id": 11,
-            "name": {
-                "pt": "Emprego",
-                "en": "Employment",
-            }
+            "name": "Emprego"
         },
         {
             "id": 12,
-            "name": {
-                "pt": "Ambiente e conservação da natureza",
-                "en": "Environment and Nature Conservation",
-            }
+            "name": "Ambiente e conservação da natureza"
         },
         {
             "id": 13,
-            "name": {
-                "pt": "Fé, religiões",
-                "en": "Faith-based",
-            }
+            "name": "Fé, religiões"
         },
         {
             "id": 14,
-            "name": {
-                "pt": "Famílias",
-                "en": "Families",
-            }
+            "name": "Famílias"
         },
         {
             "id": 15,
-            "name": {
-                "pt": "Gays, lésbicas, bissexuais e transgêneros",
-                "en": "Gay, Lesbian, Bisexual and Transgender",
-            }
+            "name": "Gays, lésbicas, bissexuais e transgêneros"
         },
         {
             "id": 16,
-            "name": {
-                "pt": "Saúde e assistência social",
-                "en": "Health and Social Care",
-            }
+            "name": "Saúde e assistência social"
         },
         {
             "id": 17,
-            "name": {
-                "pt": "Património, museus e bibliotecas",
-                "en": "Heritage, Museums and libraries",
-            }
+            "name": "Património, museus e bibliotecas"
         },
         {
             "id": 18,
-            "name": {
-                "pt": "Sem abrigo, alojamento",
-                "en": "Homeless and housing",
-            }
+            "name": "Sem abrigo, alojamento"
         },
         {
             "id": 19,
-            "name": {
-                "pt": "Direitos humanos e civis",
-                "en": "Human and civil rights",
-            }
+            "name": "Direitos humanos e civis"
         },
         {
             "id": 20,
-            "name": {
-                "pt": "Luta contra a fome",
-                "en": "Hunger",
-            }
+            "name": "Luta contra a fome"
         },
         {
             "id": 21,
-            "name": {
-                "pt": "Ajuda international, desenvolvimento",
-                "en": "International Aid, Development",
-            }
+            "name": "Ajuda international, desenvolvimento"
         },
         {
             "id": 22,
-            "name": {
-                "pt": "Direito e apoio jurídico",
-                "en": "Law and Legal Support",
-            }
+            "name": "Direito e apoio jurídico"
         },
         {
             "id": 23,
-            "name": {
-                "pt": "Lazer, animação e ocupações",
-                "en": "Leisure, animation and occupation",
-            }
+            "name": "Lazer, animação e ocupações"
         },
         {
             "id": 24,
-            "name": {
-                "pt": "Espaço de vida e urbanismo",
-                "en": "Life Space and Urbanism",
-            }
+            "name": "Espaço de vida e urbanismo"
         },
         {
             "id": 25,
-            "name": {
-                "pt": "Infratores e ex-infratores",
-                "en": "Offenders and Ex-offenders",
-            }
+            "name": "Infratores e ex-infratores"
         },
         {
             "id": 26,
-            "name": {
-                "pt": "Idosos",
-                "en": "Elderly",
-            }
+            "name": "Idosos"
         },
         {
             "id": 27,
-            "name": {
-                "pt": "Política",
-                "en": "Politics",
-            }
+            "name": "Política"
         },
         {
             "id": 28,
-            "name": {
-                "pt": "Raças, etnias e refugiados",
-                "en": "Race, Ethnicity and Refugees",
-            }
+            "name": "Raças, etnias e refugiados"
         },
         {
             "id": 29,
-            "name": {
-                "pt": "Desportos",
-                "en": "Sports",
-            }
+            "name": "Desportos"
         },
         {
             "id": 30,
-            "name": {
-                "pt": "Mulheres",
-                "en": "Women",
-            }
+            "name": "Mulheres"
         },
         {
             "id": 31,
-            "name": {
-                "pt": "Juventude",
-                "en": "Youth",
-            }
-        },
+            "name": "Juventude"
+        }
     ]
 }
