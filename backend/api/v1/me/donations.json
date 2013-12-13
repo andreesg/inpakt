@@ -1,0 +1,12 @@
+{
+    "donations": [
+        {
+            "id": 1,
+            "amount": 200,
+            "currency": "EUR",
+            "npo": "portugal/abraco",
+            "date": "2013-01-01T12:12:12",
+            "status": 4
+        }
+    ]
+}
