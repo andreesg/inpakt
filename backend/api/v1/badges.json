@@ -1,0 +1,16 @@
+{
+    "badges": [
+        {
+            "type": "NEWCOMER",
+            "image": "/img/badges/newcomer.jpg"
+        },
+        {
+            "type": "DONOR",
+            "image": "/img/badges/donor.jpg"
+        },
+        {
+            "type": "VOLUNTEER",
+            "image": "/img/badges/volunteer.jpg"
+        }
+    ]
+}
