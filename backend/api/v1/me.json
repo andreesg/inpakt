@@ -1,0 +1,10 @@
+{
+    "me": {
+        "id": 1,
+        "firstName": "Samuel",
+        "lastName": "Gordalina",
+        "email": "teste@teste.com",
+        "country": "PT",
+        "photo": "/img/avatar.jpg"
+    }
+}
