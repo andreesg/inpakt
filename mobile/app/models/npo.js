@@ -9,11 +9,12 @@
     
     url: function() {
       if (this.isNew()) {
-        return baseURL
+        return baseURL;
       } else {
-        return baseURL + "/" + this.id // use id suffix if model has id
+        return baseURL + "/" + this.id;
       }
     },
+
   });
 
   // model collection

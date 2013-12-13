@@ -100,6 +100,7 @@ NpoController["show"] = Backbone.View.extend({
 
     this.compiledTemplate = _.template( $(this.template).html() )
 
+    console.log(steroids.view.params.id);
     this.model = new Npo({id: steroids.view.params.id});
 
     this.model.bind('change', this.render, this);
@@ -126,7 +127,11 @@ NpoController["show"] = Backbone.View.extend({
   },
 
   render: function() {
+    console.log("Show view render");
+    console.log(this.model);
     this.$el.html( this.compiledTemplate(this.model.attributes) );
+    console.log("Attributes:");
+    console.log(this.model.attributes);
     return this;
   },
 
