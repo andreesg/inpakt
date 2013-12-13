@@ -1,0 +1,11 @@
+{
+    "volunteers": [
+        {
+            "id": 1,
+            "firstName": "Samuel",
+            "lastName": "Gordalina",
+            "country": "PT",
+            "photo": "/img/avatar.jpg"
+        }
+    ]
+}
