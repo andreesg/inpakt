@@ -129,9 +129,8 @@ NpoController["show"] = Backbone.View.extend({
   render: function() {
     console.log("Show view render");
     console.log(this.model);
-    this.$el.html( this.compiledTemplate(this.model.attributes) );
+    this.$el.html( this.compiledTemplate(this.model.get('npo')) );
     console.log("Attributes:");
-    console.log(this.model.attributes);
     return this;
   },
 
