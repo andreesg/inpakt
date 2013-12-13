@@ -7,19 +7,24 @@ steroids.config.name = "Inpakt"
 steroids.config.location = "http://localhost/index.html"
 
 # -- Tab Bar --
-# steroids.config.tabBar.enabled = true
-# steroids.config.tabBar.tabs = [
-#   {
-#     title: "Index"
-#     icon: "icons/pill@2x.png"
-#     location: "http://localhost/index.html"
-#   },
-#   {
-#     title: "Internet"
-#     icon: "icons/telescope@2x.png"
-#     location: "http://www.google.com"
-#   }
-# ]
+steroids.config.tabBar.enabled = true
+steroids.config.tabBar.tabs = [
+  {
+    title: "Volunteering"
+    icon: "icons/pill@2x.png"
+    location: "http://localhost/views/volunteering/index"
+  },
+  {
+    title: "Institutions"
+    icon: "icons/telescope@2x.png"
+    location: "http://localhost/views/npo/index"
+  },
+  {
+    title: "Profile"
+    icon: "icons/telescope@2x.png"
+    location: "http://www.google.com"
+  }
+]
 
 # steroids.config.tabBar.tintColor = "#000000"
 # steroids.config.tabBar.tabTitleColor = "#00aeef"
