@@ -1,0 +1,17 @@
+{
+    "donations": [
+        {
+            "id": 1,
+            "user": {
+                "id": 1,
+                "firstName": "Samuel",
+                "lastName": "Gordalina",
+                "country": "PT",
+                "photo": "/img/avatar.jpg"
+            }
+            "amount": 200,
+            "currency": "EUR",
+            "status": 4
+        }
+    ]
+}
