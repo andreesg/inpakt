@@ -16,5 +16,6 @@ if (is_file($localFile)) {
 function serve($file)
 {
     header('Content-Type: application/json; charset=UTF-8');
+    header('Access-Control-Allow-Origin: *');
     readfile($file);
 }

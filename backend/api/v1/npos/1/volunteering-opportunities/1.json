@@ -1,7 +1,6 @@
 {
     "volunteering-opportunity": {
         "id": 1,
-        "npo": "portugal/abraco",
         "name": "Voluntariado por uma boa causa",
         "address": "Rua da palma, 5",
         "latng": [ -38.9, 4.12 ],
