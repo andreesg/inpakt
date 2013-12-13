@@ -1,0 +1,21 @@
+<script type="text/template" id="new" class="view">
+
+<div class="content-padded">
+  <h1>New</h1>
+
+  <form class="simple-form">
+    Name: <input type="text" id="name" value="<%= name %>" /><br />
+    Description: <input type="text" id="description" value="<%= description %>" /><br />
+
+    <a class="topcoat-button" id="createButton">Create</a>
+    <a class="topcoat-button" id="closeButton">Cancel</a>
+  </form>
+
+</div>
+</script>
+
+<script>
+  $(function(){
+    var view = new UserController.new();
+  });
+</script>

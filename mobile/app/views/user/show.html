@@ -1,0 +1,14 @@
+<script type="text/template" id="show" class="view">
+
+<div class="content-padded">
+  <p>Showing user <span><%= name %></span></p>
+  <p><%= description %></p>
+</div>
+
+</script>
+
+<script>
+  $(function(){
+    var view = new UserController.show();
+  });
+</script>
