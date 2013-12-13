@@ -1,6 +1,3 @@
 {
-    "user": {
-        "email": "teste@teste.com",
-        "password": "password@teste.com",
-    }
+    "token": "50-bytes-length-token"
 }
