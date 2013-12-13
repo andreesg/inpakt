@@ -14,7 +14,6 @@
         return baseURL+"/"+this.id // use id suffix if model has id
       }
     },
-    // override sync to set default headers for this model
   });
 
   // model collection
