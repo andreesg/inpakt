@@ -14,7 +14,7 @@
         "taxNumber": "123456789",
         "description": "looooong text",
         "mission": "A ABRAÇO é uma IPSS (Instituição Particular de Solidariedade Social) e ONGD (Organização Não-Governamental, para o Desenvolvimento), sem fins lucrativos de prestação de serviços na área do VIH/SIDA.",
-        "image": "http://inpakt.com/image.jpg",
+        "image": "/img/abraco.jpg",
         "totalAmountRaised": 1500,
         "causes": [ 1, 3, 5 ]
     }
