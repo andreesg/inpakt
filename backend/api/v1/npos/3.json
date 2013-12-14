@@ -16,6 +16,59 @@
         "mission": "A ABRAÇO é uma IPSS (Instituição Particular de Solidariedade Social) e ONGD (Organização Não-Governamental, para o Desenvolvimento), sem fins lucrativos de prestação de serviços na área do VIH/SIDA.",
         "image": "/img/abraco.jpg",
         "totalAmountRaised": 1500,
-        "causes": [ 1, 3, 5 ]
+        "causes": [ 1, 3, 5 ],
+        "opportunities": [{
+            "id": 1,
+            "npo": "portugal/abraco",
+            "name": "Voluntariado por uma boa causa",
+            "address": "Rua da palma, 5",
+            "latng": [-38.9, 4.12],
+            "causes": [1, 2, 3],
+            "volunteersNeeded": 50,
+            "volunteersRegistered": 30,
+            "startDate": "2013-12-12T01-01-01",
+            "endDate": "2013-12-12T01-01-01",
+            "mission": "Venha ajudar os idosos a atravessar a estrada",
+            "description": ""
+        }, {
+            "id": 1,
+            "npo": "portugal/abraco",
+            "name": "Voluntariado por uma boa causa",
+            "address": "Rua da palma, 5",
+            "latng": [-38.9, 4.12],
+            "causes": [1, 2, 3],
+            "volunteersNeeded": 50,
+            "volunteersRegistered": 30,
+            "startDate": "2013-12-12T01-01-01",
+            "endDate": "2013-12-12T01-01-01",
+            "mission": "Venha ajudar os idosos a atravessar a estrada",
+            "description": ""
+        }, {
+            "id": 1,
+            "npo": "portugal/abraco",
+            "name": "Voluntariado por uma boa causa",
+            "address": "Rua da palma, 5",
+            "latng": [-38.9, 4.12],
+            "causes": [1, 2, 3],
+            "volunteersNeeded": 50,
+            "volunteersRegistered": 30,
+            "startDate": "2013-12-12T01-01-01",
+            "endDate": "2013-12-12T01-01-01",
+            "mission": "Venha ajudar os idosos a atravessar a estrada",
+            "description": ""
+        }, {
+            "id": 1,
+            "npo": "portugal/abraco",
+            "name": "Voluntariado por uma boa causa",
+            "address": "Rua da palma, 5",
+            "latng": [-38.9, 4.12],
+            "causes": [1, 2, 3],
+            "volunteersNeeded": 50,
+            "volunteersRegistered": 30,
+            "startDate": "2013-12-12T01-01-01",
+            "endDate": "2013-12-12T01-01-01",
+            "mission": "Venha ajudar os idosos a atravessar a estrada",
+            "description": ""
+        }]
     }
 }
