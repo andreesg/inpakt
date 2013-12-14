@@ -83,7 +83,7 @@ VolunteeringController["index"] = Backbone.View.extend({
     
     // todo: use underscore template
 
-    var popupContent = "<div> <h3>" + data.get('name') + " </h3><p> " + data.get('npo')['name'] + "</p> <p> <a class='bb-popuplink' href='/views/volunteering/show.html?id=" + data.get('id') + "'> View Details </a> </p></div>";
+    var popupContent = "<div> <h3>" + data.get('name') + " </h3><p> " + data.get('npo')['name'] + "</p> <button class='bb-popuplink' data-id=" + data.get('id') + "> View Details </button></div>";
 
     marker.bindPopup(popupContent).openPopup();
 
@@ -114,6 +114,15 @@ VolunteeringController["index"] = Backbone.View.extend({
       console.log("entrou");
       this.collection.each(function(index) {
         that.addMarker(index);
+        that.appendItem(index);
+
+      });
+
+      // map doesn't make event propagation, need to call this
+      this.map.on('popupopen', function() {  
+        $('.bb-popuplink').hammer().on('tap', function(e) {
+          console.log("One of the many Small Polygon Links was clicked");
+        });
       });
 
       // bounds
@@ -121,33 +130,29 @@ VolunteeringController["index"] = Backbone.View.extend({
       var bounds = L.latLngBounds(this.markers);
       console.log(bounds);
       console.log("fitting bounds");
+
       this.map.fitBounds(bounds);
 
+      // render list
     }
     
     return this;
   },
 
   appendItem: function(item) {
-    $("ul", this.$el).append("<li class='topcoat-list__item item' id='"+item.get('id')+"'>"+item.get('name')+"</li>");
+    $("ul", this.$el).append("<li class='topcoat-list__item item bb-popuplink' data-id='" + item.get('id') + "'>"+item.get('name')+"</li>");
   },
 
   events: {
-    "tap li": "open",
-    "bb-popuplink" : "openURL"
+    //"tap li": "open",
+    "tap .bb-popuplink" : "open"
   },
 
   open: function(e) {
-    view = new steroids.views.WebView("/views/volunteering/show.html?id="+$(event.target).attr("id"));
+    view = new steroids.views.WebView("/views/volunteering/show.html?id=" + $(event.target).attr("data-id"));
     steroids.layers.push(view);
   },
 
-  openURL: function(e) {
-    e.preventDefault();
-    view = new steroids.views.WebView($(event.target).attr("href"));
-    steroids.layers.push(view);
-    return false;
-  },
 
   onMessage: function(e) {
     var data = JSON.parse(e.data);
