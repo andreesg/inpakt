@@ -10,7 +10,8 @@ VolunteeringController["index"] = Backbone.View.extend({
 
   initialize: function() {
 
-    _.bindAll(this, 'render', 'appendItem', 'onMessage', 'initMap','onLocationError','onLocationFound'); // bind scope of this within functions
+    _.bindAll(this, 'render', 'appendItem', 'onMessage','addMarker', 'initMap','onLocationError','onLocationFound'); // bind scope of this within functions
+    this.collection = new VolunteeringCollection();
 
     // compile template so that it can be used later
     this.compiledTemplate = _.template( $(this.template).html() );
@@ -19,7 +20,6 @@ VolunteeringController["index"] = Backbone.View.extend({
     this.initMap();
 
     // setup the model collection
-    this.collection = new VolunteeringCollection();
     this.collection.on('add', this.appendItem);
     this.collection.on('reset', this.render);
 
@@ -27,7 +27,7 @@ VolunteeringController["index"] = Backbone.View.extend({
     window.addEventListener("message", this.onMessage, false);
 
     // load model collection from server
-    this.collection.fetch();
+    this.collection.fetch({reset:true});
 
     // 'tap' event can be used after this
     this.$el.hammer();
@@ -69,25 +69,38 @@ VolunteeringController["index"] = Backbone.View.extend({
       alert(e.message);
   },
 
-
-
-
+  addMarker: function(data) {
+    console.log("entrou addmarker");
+    console.log(data.get('latlng'));
+  
+    var latlng = L.latLng(data.get('latlng')[0], data.get('latlng')[1]);
+    L.marker(latlng).addTo(this.map)
+  },  
 
 
   /* END MAP SPECIFIC */
 
 
-
-
-
-
   render: function() {
+    var that = this;
+    
+    console.log("rendering");
+    //console.log(this.collection);
+    
+    if(this.collection.length > 0) {
+      console.log("entrou");
+      this.collection.each(function(index) {
+        that.addMarker(index);
+      });
+    }
+    
     this.$el.html( this.compiledTemplate );
+
     return this;
   },
 
   appendItem: function(item) {
-    $("ul", this.$el).append("<li class='topcoat-list__item item' id='"+item.get('volunteering_id')+"'>"+item.get('name')+"</li>");
+    $("ul", this.$el).append("<li class='topcoat-list__item item' id='"+item.get('id')+"'>"+item.get('name')+"</li>");
   },
 
   events: {
