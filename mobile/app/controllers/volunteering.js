@@ -7,6 +7,7 @@ VolunteeringController["index"] = Backbone.View.extend({
   template: "script.view[id=index]",
   compiledTemplate: "",
   map: null,
+  markers: null,
 
   initialize: function() {
 
@@ -15,7 +16,7 @@ VolunteeringController["index"] = Backbone.View.extend({
 
     // compile template so that it can be used later
     this.compiledTemplate = _.template( $(this.template).html() );
-    this.render();
+    this.renderSkeleton();
 
     this.initMap();
 
@@ -59,26 +60,43 @@ VolunteeringController["index"] = Backbone.View.extend({
   onLocationFound: function(e) {
     var radius = e.accuracy / 2;
 
+    /*
     L.marker(e.latlng).addTo(this.map)
     .bindPopup("You are within " + radius + " meters from this point").openPopup();
 
     L.circle(e.latlng, radius).addTo(this.map);
+    */
   },
 
   onLocationError: function(e) {
       alert(e.message);
   },
 
+
+  // receives a model
   addMarker: function(data) {
-    console.log("entrou addmarker");
-    console.log(data.get('latlng'));
-  
+    console.log(data);
+    this.markers.push(data.get('latlng'));
+
     var latlng = L.latLng(data.get('latlng')[0], data.get('latlng')[1]);
-    L.marker(latlng).addTo(this.map)
+    var marker = L.marker(latlng).addTo(this.map);
+    
+    // todo: use underscore template
+
+    var popupContent = "<div> <h3>" + data.get('name') + " </h3><p> " + data.get('npo')['name'] + "</p> <p> <a class='bb-popuplink' href='/views/volunteering/show.html?id=" + data.get('id') + "'> View Details </a> </p></div>";
+
+    marker.bindPopup(popupContent).openPopup();
+
+    console.log(this.map);
+
   },  
 
-
   /* END MAP SPECIFIC */
+
+  renderSkeleton: function() {
+    this.$el.html( this.compiledTemplate );
+    return this;
+  },
 
 
   render: function() {
@@ -88,14 +106,25 @@ VolunteeringController["index"] = Backbone.View.extend({
     //console.log(this.collection);
     
     if(this.collection.length > 0) {
+
+      // reset markers
+      this.markers = [];
+
+      // add markers
       console.log("entrou");
       this.collection.each(function(index) {
         that.addMarker(index);
       });
+
+      // bounds
+
+      var bounds = L.latLngBounds(this.markers);
+      console.log(bounds);
+      console.log("fitting bounds");
+      this.map.fitBounds(bounds);
+
     }
     
-    this.$el.html( this.compiledTemplate );
-
     return this;
   },
 
@@ -104,12 +133,20 @@ VolunteeringController["index"] = Backbone.View.extend({
   },
 
   events: {
-    "tap li": "open"
+    "tap li": "open",
+    "bb-popuplink" : "openURL"
   },
 
-  open: function(event) {
+  open: function(e) {
     view = new steroids.views.WebView("/views/volunteering/show.html?id="+$(event.target).attr("id"));
     steroids.layers.push(view);
+  },
+
+  openURL: function(e) {
+    e.preventDefault();
+    view = new steroids.views.WebView($(event.target).attr("href"));
+    steroids.layers.push(view);
+    return false;
   },
 
   onMessage: function(e) {
@@ -135,7 +172,7 @@ VolunteeringController["show"] = Backbone.View.extend({
 
     this.compiledTemplate = _.template( $(this.template).html() )
 
-    this.model = new Volunteering({volunteering_id: steroids.view.params.id});
+    this.model = new Volunteering({id: steroids.view.params.id});
 
     this.model.bind('change', this.render, this);
 

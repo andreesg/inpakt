@@ -13,7 +13,13 @@
       } else {
         return baseURL+"/"+this.id // use id suffix if model has id
       }
+    },
+
+    parse: function(resp) {
+      if(resp['volunteering-opportunity'])
+        return resp['volunteering-opportunity'];
     }
+
   });
 
   // model collection
