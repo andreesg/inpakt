@@ -16,29 +16,30 @@ UserController["index"] = Backbone.View.extend({
     this.render();
 
     // setup the model collection
-    this.collection = new UserCollection();
+    /*this.collection = new UserCollection();
     this.collection.on('add', this.appendItem);
-    this.collection.on('reset', this.render);
+    this.collection.on('reset', this.render);*/
 
+    /*
     // after editing the model, view should update
     window.addEventListener("message", this.onMessage, false);
 
     // load model collection from server
     this.collection.fetch();
 
-    // 'tap' event can be used after this
+    // 'tap' event can be used after this*/
     this.$el.hammer();
 
     // setup navigation bar
-    steroids.view.navigationBar.show("User Index");
+    steroids.view.navigationBar.show("Perfil");
 
-    var rightButton = new steroids.buttons.NavigationBarButton();
+    /*var rightButton = new steroids.buttons.NavigationBarButton();
     rightButton.title = "Add";
     rightButton.onTap = function() {
       view = new steroids.views.WebView("/views/user/new.html");
       steroids.modal.show(view);
     };
-    steroids.view.navigationBar.setButtons({right: [rightButton]});
+    steroids.view.navigationBar.setButtons({right: [rightButton]});*/
 
     return this;
   },

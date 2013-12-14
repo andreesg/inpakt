@@ -11,10 +11,10 @@
   <link rel="stylesheet" href="/stylesheets/application.css" />
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
 
-  <!--
+  
   <link rel="stylesheet" href="/components/foundation/css/normalize.css">
   <link rel="stylesheet" href="/components/foundation/css/foundation.css">
-  -->
+  
   <script src="/javascripts/onerror.js"></script>
   <script src="/javascripts/console.log.js"></script>
 
@@ -22,6 +22,7 @@
   <script src="/components/steroids-js/steroids.js"></script>
 
   <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+  <script src="/components/TileLayer.Grayscale.js"></script>
 
   <script src="/components/jquery/jquery.min.js"></script>
 
@@ -29,12 +30,11 @@
   <script src="/components/underscore/underscore-min.js"></script>
   <script src="/components/backbone/backbone-min.js"></script>
 
-
   <script src="/models/models.js"></script>
 
   <script src="/controllers/<%= yield.controller %>.js"></script>
 </head>
-<body>
+<body style="background-color:#e1e4e3;">
 
   <%= yield.view %>
 

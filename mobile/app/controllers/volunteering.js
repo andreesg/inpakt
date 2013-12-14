@@ -34,7 +34,7 @@ VolunteeringController["index"] = Backbone.View.extend({
     this.$el.hammer();
 
     // setup navigation bar
-    steroids.view.navigationBar.show("Volunteering Opportunities");
+    steroids.view.navigationBar.show("INPAKT");
 
     return this;
   },
@@ -46,16 +46,17 @@ VolunteeringController["index"] = Backbone.View.extend({
   initMap: function() {
     this.map = L.map('map');
 
-    L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: 'Inpakt'
+    L.tileLayer.grayscale('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Inpakt',
+            maxZoom: 14, minZoom: 2
     }).addTo(this.map);
+   
 
     this.map.on('locationfound', this.onLocationFound);
     this.map.on('locationerror', this.onLocationError);
 
     this.map.locate({setView: true, maxZoom: 16});
-  },
+    },
 
   onLocationFound: function(e) {
     var radius = e.accuracy / 2;
@@ -75,17 +76,25 @@ VolunteeringController["index"] = Backbone.View.extend({
 
   // receives a model
   addMarker: function(data) {
+
+    var myIcon = L.icon({
+      iconUrl: '/img/marker@2x.png',
+      iconRetinaUrl: '/img/marker@2x.png',
+      iconSize: [33, 32]
+    });
+
     console.log(data);
     this.markers.push(data.get('latlng'));
 
     var latlng = L.latLng(data.get('latlng')[0], data.get('latlng')[1]);
-    var marker = L.marker(latlng).addTo(this.map);
+    var marker = L.marker(latlng, {icon:myIcon}).addTo(this.map);
     
     // todo: use underscore template
 
-    var popupContent = "<div> <h3>" + data.get('name') + " </h3><button> " + data.get('npo')['name'] + "</p> <p class='bb-popuplink topcoat-button' data-id=" + data.get('id') + "> View Details </button></div>";
+    //var popupContent = "<div> <h3>" + data.get('name') + " </h3><button> " + data.get('npo')['name'] + "</p> <p class='bb-popuplink topcoat-button' data-id=" + data.get('id') + "> View Details </button></div>";
 
-    marker.bindPopup(popupContent).openPopup();
+    //marker.bindPopup(popupContent).openPopup();
+    
 
     console.log(this.map);
 
@@ -105,7 +114,7 @@ VolunteeringController["index"] = Backbone.View.extend({
     var that = this;
     
     console.log("rendering");
-    //console.log(this.collection);
+    console.log(this.collection);
     
     if(this.collection.length > 0) {
 
@@ -114,11 +123,17 @@ VolunteeringController["index"] = Backbone.View.extend({
 
       // add markers
       console.log("entrou");
+      var i = 0;
+      $("#list-opportunities").append("<div class='row'></div>");
       this.collection.each(function(index) {
         that.addMarker(index);
         that.appendItem(index);
-
+        if ((i+1) % 4 == 0) {
+          $("#list-opportunities").append("</div><div class='row'>");
+        }
+        i++;
       });
+      $("#list-opportunities").append("</div>");
 
       // map doesn't make event propagation, need to call this
       this.map.on('popupopen', function() {  
@@ -133,7 +148,8 @@ VolunteeringController["index"] = Backbone.View.extend({
       console.log(bounds);
       console.log("fitting bounds");
 
-      this.map.fitBounds(bounds);
+      //this.map.fitBounds(bounds);
+
 
       // render list
     }
@@ -142,8 +158,9 @@ VolunteeringController["index"] = Backbone.View.extend({
   },
 
   appendItem: function(item) {
-    this.$opp_container.append("<li class='topcoat-list__item item bb-popuplink' id='" + item.get('id') + "' data-id='" + item.get('id') + "'>"+item.get('name')+"</li>");
-    //this.$opp_container.append('<li class="bb-popuplink" data-id="' + item.get('id') + '" ><a href="#"> <img src="http://placehold.it/50x50" /> <h2> ' + item.get('name') + ' </h2> <p> ' + item.get('npo')['name'] + ' </p></a></li>');
+    console.log("APPEND!");
+
+    $("#list-opportunities").append("<div class='small-3 columns bb-popuplink' style='line-height:10px;' data-id='"+item.get('id')+"'><img src='/img/imgs/"+item.get('id')+".png' data-id='"+item.get('id')+"'></img><div style='margin-top:10px;' data-id='"+item.get('id')+"'><span style='font-size:8px;' data-id='"+item.get('id')+"'>"+item.get('name')+"</span><br>-<br><span style='font-size:8px;' data-id='"+item.get('id')+"'>"+item.get('volunteersRegistered')+" / "+item.get('volunteersNeeded')+"</span></div></div>"); 
   },
 
   events: {
@@ -151,7 +168,9 @@ VolunteeringController["index"] = Backbone.View.extend({
     "tap .bb-popuplink" : "open"
   },
 
-  open: function(e) {
+  open: function(event) {
+    console.log("OPEN");
+    console.log($(event.target));
     view = new steroids.views.WebView("/views/volunteering/show.html?id=" + $(event.target).attr("data-id"));
     steroids.layers.push(view);
   },

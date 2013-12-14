@@ -10,25 +10,24 @@ steroids.config.name = "Inpakt"
 steroids.config.tabBar.enabled = true
 steroids.config.tabBar.tabs = [
   {
-    title: "Volunteering"
-    icon: "icons/pill@2x.png"
+    title: "Voluntariado"
+    icon: "img/prototipo10@2x.png"
     location: "http://localhost/views/volunteering/index.html"
   },
   {
-    title: "Institutions"
-    icon: "icons/telescope@2x.png"
+    title: "Instituições"
+    icon: "img/prototipo11@2x.png"
     location: "http://localhost/views/npo/index.html"
   },
   {
-    title: "Profile"
-    icon: "icons/telescope@2x.png"
-    location: "http://www.google.com"
+    title: "Perfil"
+    icon: "img/prototipo12@2x.png"
+    location: "http://localhost/views/user/index.html"
   }
 ]
-
-# steroids.config.tabBar.tintColor = "#000000"
-# steroids.config.tabBar.tabTitleColor = "#00aeef"
-# steroids.config.tabBar.selectedTabTintColor = "#ffffff"
+steroids.config.tabBar.tintColor = "#e1e4e3"
+steroids.config.tabBar.tabTitleColor = "#b2b2b2"
+steroids.config.tabBar.selectedTabTintColor = "#575757"
 # steroids.config.tabBar.selectedTabBackgroundImage = "icons/pill@2x.png"
 
 # steroids.config.tabBar.backgroundImage = ""
