@@ -2,7 +2,21 @@
 
 
 <div class="content-padded">
-  <p>Showing volunteering <span><%= name %></span></p>
+  <h4> Name </h4> 
+  <p><%= model.get('volunteering-opportunities')['name'] %> </p>
+
+  <h4> Volunteers Needed </h4> 
+  <p><%= model.get('volunteering-opportunities')['volunteersNeeded'] %> </p>
+  
+  <h4> Volunteers Registered </h4> 
+  <p><%= model.get('volunteering-opportunities')['volunteersRegistered'] %> </p>
+  
+  <h4> Start </h4> 
+  <p><%= model.get('volunteering-opportunities')['startDate'] %> </p>
+  
+  <h4> End </h4> 
+  <p><%= model.get('volunteering-opportunities')['endDate'] %> </p>
+
 </div>
 
 </script>

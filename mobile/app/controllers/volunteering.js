@@ -184,19 +184,12 @@ VolunteeringController["show"] = Backbone.View.extend({
     // setup navigation bar
     steroids.view.navigationBar.show("Volunteering Show");
 
-    var rightButton = new steroids.buttons.NavigationBarButton();
-    rightButton.title = "Edit";
-    rightButton.onTap = function() {
-      view = new steroids.views.WebView("/views/volunteering/edit.html?id="+steroids.view.params.id);
-      steroids.modal.show(view);
-    };
-    steroids.view.navigationBar.setButtons({right: [rightButton]});
-
     return this;
   },
 
   render: function() {
-    this.$el.html( this.compiledTemplate(this.model.attributes) );
+    console.log(this.model.attributes);
+    this.$el.html(this.compiledTemplate({model: this.model}));
     return this;
   },
 
