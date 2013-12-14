@@ -72,6 +72,7 @@ UserController["index"] = Backbone.View.extend({
 });
 
 
+
 // View for user/show.html
 UserController["show"] = Backbone.View.extend({
   el: "body",
@@ -220,5 +221,4 @@ UserController["new"] = Backbone.View.extend({
   }
 
 });
-
 

@@ -83,7 +83,7 @@ VolunteeringController["index"] = Backbone.View.extend({
     
     // todo: use underscore template
 
-    var popupContent = "<div> <h3>" + data.get('name') + " </h3><p> " + data.get('npo')['name'] + "</p> <button class='bb-popuplink' data-id=" + data.get('id') + "> View Details </button></div>";
+    var popupContent = "<div> <h3>" + data.get('name') + " </h3><button> " + data.get('npo')['name'] + "</p> <p class='bb-popuplink topcoat-button' data-id=" + data.get('id') + "> View Details </button></div>";
 
     marker.bindPopup(popupContent).openPopup();
 
@@ -95,6 +95,8 @@ VolunteeringController["index"] = Backbone.View.extend({
 
   renderSkeleton: function() {
     this.$el.html( this.compiledTemplate );
+    this.$opp_container = $("#opp_index_container");
+
     return this;
   },
 
@@ -121,7 +123,7 @@ VolunteeringController["index"] = Backbone.View.extend({
       // map doesn't make event propagation, need to call this
       this.map.on('popupopen', function() {  
         $('.bb-popuplink').hammer().on('tap', function(e) {
-          console.log("One of the many Small Polygon Links was clicked");
+          console.log("clicked");
         });
       });
 
@@ -140,7 +142,8 @@ VolunteeringController["index"] = Backbone.View.extend({
   },
 
   appendItem: function(item) {
-    $("ul", this.$el).append("<li class='topcoat-list__item item bb-popuplink' data-id='" + item.get('id') + "'>"+item.get('name')+"</li>");
+    this.$opp_container.append("<li class='topcoat-list__item item bb-popuplink' id='" + item.get('id') + "' data-id='" + item.get('id') + "'>"+item.get('name')+"</li>");
+    //this.$opp_container.append('<li class="bb-popuplink" data-id="' + item.get('id') + '" ><a href="#"> <img src="http://placehold.it/50x50" /> <h2> ' + item.get('name') + ' </h2> <p> ' + item.get('npo')['name'] + ' </p></a></li>');
   },
 
   events: {

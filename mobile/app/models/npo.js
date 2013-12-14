@@ -1,7 +1,7 @@
 // The contents of individual model .js files will be concatenated into dist/models.js
 (function(window){
 
-  var baseURL = "http://0.0.0.0:8000/api/v1/npos"
+  var baseURL = "http://in.dev/api/v1/npos";
 
   // single model
   window.Npo = Backbone.Model.extend({
