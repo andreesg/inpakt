@@ -2,7 +2,7 @@
 (function(window){
 
   // // Example of StackMob REST configuration:
-  var baseURL = "http://0.0.0.0:8000/api/v1/volunteering-opportunities"
+  var baseURL = "http://in.dev/api/v1/volunteering-opportunities"
 
   // single model
   window.Volunteering = Backbone.Model.extend({
@@ -22,9 +22,10 @@
     url: baseURL,
 
     parse: function(resp) {
+      console.log("parse resp");
       console.log(resp);
-      if(resp['volunteering-opportunities'])
-        return resp['volunteering-opportunities'];
+      if(resp['volunteering_opportunities'])
+        return resp['volunteering_opportunities'];
     }
   });
 

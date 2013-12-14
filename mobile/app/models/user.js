@@ -2,7 +2,7 @@
 (function(window){
 
   // // Example of StackMob REST configuration:
-  var baseURL = "http://0.0.0.0:8000/api/v1/npos"
+  var baseURL = "http://in.dev/api/v1/npos"
 
   // single model
   window.User = Backbone.Model.extend({
