@@ -32,7 +32,7 @@ NpoController["index"] = Backbone.View.extend({
     this.$el.hammer();
 
     // setup navigation bar
-    steroids.view.navigationBar.show("Npo Index");
+    steroids.view.navigationBar.show("Organizations");
 
     /*
     var rightButton = new steroids.buttons.NavigationBarButton();
@@ -51,9 +51,6 @@ NpoController["index"] = Backbone.View.extend({
 
     var that = this;
 
-    console.log("COLLECTION");
-    console.log(this.collection);
-
     this.$el.html( this.compiledTemplate );
 
     this.collection.each(function(index) {
@@ -65,8 +62,7 @@ NpoController["index"] = Backbone.View.extend({
   },
 
   appendItem: function(item) {
-    console.log("APPENDING");
-    $("ul", this.$el).append("<li class='topcoat-list__item item' id='"+item.get('id')+"'>"+item.get('name')+"</li>");
+    $("ul", this.$el).append("<li class='topcoat-list__item item' id='"+item.get('id')+"'>"+item.get('shortName')+"</li>");
   },
 
   events: {
@@ -96,7 +92,7 @@ NpoController["show"] = Backbone.View.extend({
   compiledTemplate: "",
 
   initialize: function() {
-    _.bindAll(this, 'render', 'onMessage'); // bind scope of this within functions
+    _.bindAll(this, 'render', 'onMessage', 'button'); // bind scope of this within functions
 
     this.compiledTemplate = _.template( $(this.template).html() )
 
@@ -111,7 +107,7 @@ NpoController["show"] = Backbone.View.extend({
     this.model.fetch();
 
     // setup navigation bar
-    steroids.view.navigationBar.show("Npo Show");
+    steroids.view.navigationBar.show("Opportunity");
 
     /*
     var rightButton = new steroids.buttons.NavigationBarButton();
@@ -127,11 +123,42 @@ NpoController["show"] = Backbone.View.extend({
   },
 
   render: function() {
-    console.log("Show view render");
-    console.log(this.model);
+    var that = this;
+    steroids.view.navigationBar.show(this.model.get('npo').shortName);
     this.$el.html( this.compiledTemplate(this.model.get('npo')) );
-    console.log("Attributes:");
+    this.renderOpportunities(this.model.get('npo').opportunities);
+    
+    $("#opps_list li").click(function (event) {
+      that.open(event);
+    });
     return this;
+  },
+
+  events: {
+    "tap li": "open"
+  },
+
+  open: function(event) {
+    /*TODO
+
+    Open web view with opportunity
+
+    */
+  },
+
+  renderOpportunities: function(opps) {
+    for (var i = 0; i < opps.length; i++) {
+      this.appendItem(opps[i]);
+    };
+  },
+
+  button: function(event) {
+    console.log("BUTTON");
+    alert("BTN!");
+  },
+
+  appendItem: function(item) {
+    $("ul", this.$el).append("<li class='topcoat-list__item item' id='"+item.id+"'>"+item.name+"</li>");
   },
 
   onMessage: function(e) {
@@ -140,112 +167,4 @@ NpoController["show"] = Backbone.View.extend({
   }
 
 });
-
-
-
-// View for npo/edit.html
-NpoController["edit"] = Backbone.View.extend({
-  el: "body",
-
-  template: "script.view[id=edit]",
-
-  initialize: function() {
-    _.bindAll(this, 'render', 'save', 'close', 'afterSave'); // bind scope of this within functions
-
-    this.model = new Npo({npo_id: steroids.view.params.id});
-
-    this.model.fetch({success: this.render});
-
-    // setup navigation bar
-    steroids.view.navigationBar.show("Npo Edit");
-
-    // 'tap' event can be used after this
-    this.$el.hammer();
-
-    return this;
-  },
-
-  render: function() {
-    this.$el.html( _.template( $(this.template).html(), this.model.attributes ) );
-    return this;
-  },
-
-  events: {
-    "tap a#updateButton": "save",
-    "tap a#closeButton": "close"
-  },
-
-  close: function() {
-    steroids.modal.hide();
-  },
-
-  save: function() {
-    this.model.save({
-      name: this.$el.find("input#name").val(),
-      description: this.$el.find("input#description").val()
-    }, {
-      success: this.afterSave
-    });
-  },
-
-  afterSave: function() {
-    window.postMessage(JSON.stringify({msg: "refresh"}));
-    this.close();
-  }
-
-});
-
-
-// View for npo/new.html
-NpoController["new"] = Backbone.View.extend({
-  el: "body",
-
-  template: "script.view[id=new]",
-
-  initialize: function() {
-    _.bindAll(this, 'render', 'save', 'close', 'afterSave'); // bind scope of this within functions
-
-    this.model = new Npo({description: "", name: ""});
-
-    // setup navigation bar
-    steroids.view.navigationBar.show("Npo New");
-
-    // 'tap' event can be used after this
-    this.$el.hammer();
-
-    this.render();
-
-    return this;
-  },
-
-  render: function() {
-    this.$el.html( _.template( $(this.template).html(), this.model.attributes ) );
-    return this;
-  },
-
-  events: {
-    "tap a#createButton": "save",
-    "tap a#closeButton": "close"
-  },
-
-  close: function() {
-    steroids.modal.hide();
-  },
-
-  save: function() {
-    this.model.save({
-      name: this.$el.find("input#name").val(),
-      description: this.$el.find("input#description").val()
-    }, {
-      success: this.afterSave
-    });
-  },
-
-  afterSave: function() {
-    window.postMessage(JSON.stringify({msg: "refresh"}));
-    this.close();
-  }
-
-});
-
 

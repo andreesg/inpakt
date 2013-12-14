@@ -1,11 +1,21 @@
 <script type="text/template" id="show" class="view">
 
+
 <div class="content-padded">
-<h1><%= shortName %></h1>
-
-<small><%= email%></small>
-
+	<h1><%= shortName %></h1>
+	<small><%= email %></small>
+	<div>
+		<h3><%= mission %></h3>
+	</div>
+	<button class="topcoat-button--large--quiet" id="btn_donate">Donate</button>
+	<button class="topcoat-button--large--quiet" disabled>Volunteer</button>
 </div>
+
+<div class="topcoat-list__container" id="opps_list">
+  <ul class="topcoat-list">
+  </ul>
+</div>
+
 </script>
 
 <script>
