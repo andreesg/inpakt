@@ -121,16 +121,16 @@ UserController["show"] = Backbone.View.extend({
 
 
 
-// View for user/edit.html
-UserController["edit"] = Backbone.View.extend({
+// View for user/login.html
+UserController["login"] = Backbone.View.extend({
   el: "body",
 
-  template: "script.view[id=edit]",
+  template: "script.view[id=login]",
 
   initialize: function() {
     _.bindAll(this, 'render', 'save', 'close', 'afterSave'); // bind scope of this within functions
 
-    this.model = new User({user_id: steroids.view.params.id});
+    /*this.model = new User({user_id: steroids.view.params.id});
 
     this.model.fetch({success: this.render});
 
@@ -138,35 +138,30 @@ UserController["edit"] = Backbone.View.extend({
     steroids.view.navigationBar.show("User Edit");
 
     // 'tap' event can be used after this
-    this.$el.hammer();
+    this.$el.hammer();*/
 
     return this;
   },
 
   render: function() {
-    this.$el.html( _.template( $(this.template).html(), this.model.attributes ) );
+    /*this.$el.html( _.template( $(this.template).html(), this.model.attributes ) );*/
     return this;
   },
 
   events: {
-    "tap a#updateButton": "save",
-    "tap a#closeButton": "close"
+    "tap #submitButton": "submit",
+    "tap #closeButton": "close"
   },
 
   close: function() {
     steroids.modal.hide();
   },
 
-  save: function() {
-    this.model.save({
-      name: this.$el.find("input#name").val(),
-      description: this.$el.find("input#description").val()
-    }, {
-      success: this.afterSave
-    });
+  submit: function() {
+    /* TODO */
   },
 
-  afterSave: function() {
+  afterSubmit: function() {
     window.postMessage(JSON.stringify({msg: "refresh"}));
     this.close();
   }

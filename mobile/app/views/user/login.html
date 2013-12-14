@@ -1,0 +1,18 @@
+<script type="text/template" id="login" class="view">
+
+<div class="content-padded">
+  	<input type="text" class="topcoat-text-input--large" value="" placeholder="username">
+	<br>
+	<br>
+	<input type="password" class="topcoat-text-input--large" value="" placeholder="password" disabled>
+	<button class="topcoat-button--large--cta" id="submitButton">Submit</button>
+	<button class="topcoat-button--large--cta" id="closeButton">Close</button>
+</div>
+
+</script>
+
+<script>
+  $(function(){
+    var view = new UserController.login();
+  });
+</script>
